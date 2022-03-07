@@ -24,6 +24,57 @@
     <title>Sky Room</title>
   </head>
   <body>
+    <header>
+      <!-- chatroom title -->
+      <section class="main-title my-4">
+        <h1>Sky Room</h1>
+      </section>
+    </header>
+
+    <main>
+      <!-- Rooms Buttons -->
+      <section>
+        <section class="rooms-title text-center my-3">
+          <h4>Choose a room</h4>
+        </section>
+        <section class="rooms-btn">
+          <button class="btn" id="general">#general</button>
+          <button class="btn" id="Programming">#Programming</button>
+          <button class="btn" id="music">#music</button>
+          <button class="btn" id="gaming">#gaming</button>
+        </section>
+      </section>
+      <!-- Chat Messages -->
+      <section class="chat-messages">
+        <ul class="list-group" id="messages-list"></ul>
+      </section>
+      <!-- New Message -->
+      <section class="new-message my-3 text-center">
+        <form action="">
+          <input type="text" id="message-input" required />
+          <input type="submit" id="send-btn" value="send" />
+        </form>
+      </section>
+      <!-- Update username input -->
+      <section class="update-username my-3 text-center">
+        <form action="">
+          <input type="text" id="username-input" required />
+          <input type="submit" id="update-btn" value="update" />
+        </form>
+        <section>
+          <p class="update-message"></p>
+        </section>
+      </section>
+    </main>
+    <footer>
+      <p>
+        Created By
+        <a href="https://www.instagram.com/Hossein_Developer"
+          >Hossein-Developer</a
+        >
+      </p>
+    </footer>
+
     <!-- bootstrap scripts -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"
