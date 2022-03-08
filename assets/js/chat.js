@@ -20,3 +20,22 @@ async function getInformation(db) {
   }
 }
 getInformation(db);
+
+class chatRoom {
+  constructor(username, room) {
+    this.username = username;
+    this.room = room;
+  }
+  async addChat(message) {
+    const time = new Date();
+    const chatData = {
+      message,
+      username: this.username,
+      room: this.room,
+      created_at: Timestamp.fromDate(time),
+    };
+    await setDoc(doc(db, "Chats", "grgdfgfdgfdgfdg"), chatData);
+  }
+}
+
+const data1 = new chatRoom("hassan", "gaming");
