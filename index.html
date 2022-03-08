@@ -48,7 +48,16 @@
       <section class="chat-messages">
         <!-- Chat Messages Display-->
         <section class="message-display">
-          <ul class="list-group" id="messages-list"></ul>
+          <ul class="list-group" id="messages-list">
+            <!-- Messages -->
+            <li class="message">
+              <span class="message-username">Hossein says :</span>
+              <span class="message-text"
+                >hi !! welcome my friend :) thats first pm
+              </span>
+              <span class="message-time">11:53</span>
+            </li>
+          </ul>
         </section>
         <!-- New Message -->
         <section class="new-message my-3 text-center">
@@ -64,7 +73,7 @@
       </section>
 
       <!-- Update username input -->
-      <section class="update-username my-3 text-center">
+      <section class="update-username my-3 text-center d-none">
         <form action="">
           <input type="text" id="username-input" required />
           <input type="submit" id="update-btn" value="update" />
