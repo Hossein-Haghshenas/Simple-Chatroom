@@ -31,30 +31,38 @@
       </section>
     </header>
 
-    <main>
+    <main class="d-flex flex-column align-items-center">
       <!-- Rooms Buttons -->
       <section>
         <section class="rooms-title text-center my-3">
           <h4>Choose a room</h4>
         </section>
-        <section class="rooms-btn">
-          <button class="btn" id="general">#general</button>
-          <button class="btn" id="Programming">#Programming</button>
-          <button class="btn" id="music">#music</button>
-          <button class="btn" id="gaming">#gaming</button>
+        <section class="rooms">
+          <button class="room-btn" id="general">#General</button>
+          <button class="room-btn" id="Programming">#Programming</button>
+          <button class="room-btn" id="music">#Music</button>
+          <button class="room-btn" id="gaming">#Gaming</button>
         </section>
       </section>
       <!-- Chat Messages -->
       <section class="chat-messages">
-        <ul class="list-group" id="messages-list"></ul>
+        <!-- Chat Messages Display-->
+        <section class="message-display">
+          <ul class="list-group" id="messages-list"></ul>
+        </section>
+        <!-- New Message -->
+        <section class="new-message my-3 text-center">
+          <form action="" class="position-relative">
+            <input type="text" id="message-input" required />
+            <button
+              type="submit"
+              id="send-btn"
+              class="fa-solid fa-paper-plane"
+            ></button>
+          </form>
+        </section>
       </section>
-      <!-- New Message -->
-      <section class="new-message my-3 text-center">
-        <form action="">
-          <input type="text" id="message-input" required />
-          <input type="submit" id="send-btn" value="send" />
-        </form>
-      </section>
+
       <!-- Update username input -->
       <section class="update-username my-3 text-center">
         <form action="">
