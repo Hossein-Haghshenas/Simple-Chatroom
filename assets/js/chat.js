@@ -33,6 +33,7 @@ async function getInformationLive(db) {
     const unsubscribe = onSnapshot(q, (snapshot) => {
       snapshot.docChanges().forEach((change) => {
         if (change.type === "added") {
+          displayChat(change.doc.data());
         }
         if (change.type === "modified") {
         }
@@ -71,5 +72,39 @@ class chatRoom {
     await setDoc(doc(db, "Chats", `${this.id}`), chatData);
   }
 }
+
+/* show chats on the window */
+
+const displayChat = (data) => {
+  const Container = document.querySelector("#messages-list");
+
+  /* Create li for new Message  */
+  const newMessages = document.createElement("li");
+  newMessages.classList.add("message");
+  /* Message name */
+  const messagesName = document.createElement("span");
+  messagesName.classList.add("message-username");
+  messagesName.textContent = `${data.username} says :`;
+  /* Message text */
+  const messagesText = document.createElement("span");
+  messagesText.classList.add("message-text");
+  messagesText.textContent = data.message;
+  /* Message time */
+  const messagesTime = document.createElement("span");
+  messagesTime.classList.add("message-time");
+  messagesTime.textContent = time(data.created_at);
+
+  /* append all */
+  newMessages.append(messagesName, messagesText, messagesTime);
+  Container.appendChild(newMessages);
+
+  function time(data) {
+    let hour = new Date(data * 1000).getHours();
+    let minutes = new Date(data * 1000).getMinutes();
+    hour = hour < 10 ? `0${hour}` : hour;
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
+    return `${hour}:${minutes}`;
+  }
+};
 
 getInformationLive(db);
