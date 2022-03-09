@@ -1,16 +1,14 @@
-// Import the functions you need from the SDKs you need
+// Import the functions from the Firebase SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
 import {
   getFirestore,
   collection,
   doc,
-  getDocs,
   setDoc,
   deleteDoc,
   Timestamp,
   onSnapshot,
   query,
-  where,
 } from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.6.8/firebase-firestore.min.js";
 
 //  web app's Firebase configuration
@@ -29,15 +27,4 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 /* export libraries & information to other js files */
-export {
-  db,
-  collection,
-  doc,
-  getDocs,
-  setDoc,
-  deleteDoc,
-  Timestamp,
-  onSnapshot,
-  query,
-  where,
-};
+export { db, collection, doc, setDoc, deleteDoc, Timestamp, onSnapshot, query };
