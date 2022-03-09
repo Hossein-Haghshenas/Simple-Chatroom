@@ -4,6 +4,7 @@ import { deleteMessage } from "./chat.js";
 
 const displayChat = (data, id) => {
   const Container = document.querySelector("#messages-list");
+  const messageDisplay = document.querySelector(".message-display");
 
   /* Create li for new Message  */
   const newMessages = document.createElement("li");
@@ -26,7 +27,7 @@ const displayChat = (data, id) => {
   /* append all */
   newMessages.append(messagesName, messagesText, messagesTime);
   Container.appendChild(newMessages);
-
+  messageDisplay.scrollTo(0, messageDisplay.scrollHeight);
   /* Create time format*/
 
   function time(data) {

@@ -67,16 +67,12 @@ class chatRoom {
 const newMessage = () => {
   const sendForm = document.querySelector("form");
   const messageText = document.querySelector("#message-input");
-  const messageDisplay = document.querySelector(".message-display");
 
   sendForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const data1 = new chatRoom("Hossein", "gaming");
     data1.addChat(messageText.value);
     messageText.value = "";
-    setTimeout(() => {
-      messageDisplay.scrollTo(0, messageDisplay.scrollHeight);
-    }, 100);
   });
 };
 
