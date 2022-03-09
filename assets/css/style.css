@@ -84,7 +84,9 @@ li {
   margin-top: 1rem;
   overflow-y: auto;
 }
-
+.message-display::-webkit-scrollbar {
+  display: none;
+}
 /* chat messages style */
 
 .message {
@@ -93,14 +95,13 @@ li {
   background-color: #8da0ff;
   width: max-content;
   max-width: 17rem;
+  min-width: 8rem;
   border-radius: 1rem;
   border-top-left-radius: 0;
   margin-top: 1rem;
   line-break: auto;
 }
-.message::-webkit-scrollbar {
-  display: none;
-}
+
 .message-username {
   position: absolute;
   top: 2px;
