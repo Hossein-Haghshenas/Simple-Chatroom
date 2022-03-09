@@ -45,6 +45,14 @@ async function getInformationLive(db) {
   }
 }
 
+/* Create uid */
+
+const uidMaker = () => {
+  const partOne = Date.now().toString(36);
+  const partTwo = Math.random().toString(36).substring(6);
+  return partTwo.concat(partOne);
+};
+
 /* chatroom class */
 class chatRoom {
   constructor(username, room) {
