@@ -8,7 +8,10 @@ import {
   setDoc,
   deleteDoc,
   Timestamp,
-} from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.6.8/firebase-firestore-lite.min.js";
+  onSnapshot,
+  query,
+  where,
+} from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.6.8/firebase-firestore.min.js";
 
 //  web app's Firebase configuration
 const firebaseConfig = {
@@ -26,4 +29,15 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 /* export libraries & information to other js files */
-export { db, collection, doc, getDocs, setDoc, deleteDoc, Timestamp };
+export {
+  db,
+  collection,
+  doc,
+  getDocs,
+  setDoc,
+  deleteDoc,
+  Timestamp,
+  onSnapshot,
+  query,
+  where,
+};
