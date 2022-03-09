@@ -107,4 +107,13 @@ const displayChat = (data) => {
   }
 };
 
+const sendForm = document.querySelector("form");
+const messageText = document.querySelector("#message-input");
+
+sendForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const data1 = new chatRoom("Hossein", "gaming");
+  data1.addChat(messageText.value);
+});
+
 getInformationLive(db);
