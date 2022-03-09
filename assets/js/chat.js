@@ -1,43 +1,27 @@
+// Import the functions from the app.js
+
 import {
   db,
   collection,
   doc,
-  getDocs,
   setDoc,
   deleteDoc,
   Timestamp,
   onSnapshot,
   query,
-  where,
 } from "./app.js";
 
-/* connect to the database */
-
-/* async function getInformation(db) {
-  try {
-    const getData = await collection(db, "Chats");
-    const getDocument = await getDocs(getData);
-     const document = getDocument.docs.map((doc) => displayChat(doc.data())); 
-
-    return document;
-  } catch (error) {
-    console.log(`something is wrong ${error}`);
-  }
-} */
+import { displayChat } from "./ui.js";
 
 /* live Connect to the database */
 
 async function getInformationLive(db) {
   try {
     const q = query(collection(db, "Chats"));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
+    await onSnapshot(q, (snapshot) => {
       snapshot.docChanges().forEach((change) => {
         if (change.type === "added") {
-          displayChat(change.doc.data());
-        }
-        if (change.type === "modified") {
-        }
-        if (change.type === "removed") {
+          displayChat(change.doc.data(), change.doc.id);
         }
       });
     });
@@ -45,6 +29,8 @@ async function getInformationLive(db) {
     console.log(`something is wrong ${error}`);
   }
 }
+
+getInformationLive(db);
 
 /* Create uid */
 
@@ -69,51 +55,41 @@ class chatRoom {
       room: this.room,
       created_at: Timestamp.fromDate(time),
     };
-    await setDoc(doc(db, "Chats", `${this.id}`), chatData);
+    await setDoc(doc(db, "Chats", this.id), chatData);
+  }
+  async deleteChat(id) {
+    await deleteDoc(doc(db, "Chats", id));
   }
 }
 
-/* show chats on the window */
+/* Create and send new Message */
 
-const displayChat = (data) => {
-  const Container = document.querySelector("#messages-list");
+const newMessage = () => {
+  const sendForm = document.querySelector("form");
+  const messageText = document.querySelector("#message-input");
+  const messageDisplay = document.querySelector(".message-display");
 
-  /* Create li for new Message  */
-  const newMessages = document.createElement("li");
-  newMessages.classList.add("message");
-  /* Message name */
-  const messagesName = document.createElement("span");
-  messagesName.classList.add("message-username");
-  messagesName.textContent = `${data.username} says :`;
-  /* Message text */
-  const messagesText = document.createElement("span");
-  messagesText.classList.add("message-text");
-  messagesText.textContent = data.message;
-  /* Message time */
-  const messagesTime = document.createElement("span");
-  messagesTime.classList.add("message-time");
-  messagesTime.textContent = time(data.created_at);
-
-  /* append all */
-  newMessages.append(messagesName, messagesText, messagesTime);
-  Container.appendChild(newMessages);
-
-  function time(data) {
-    let hour = new Date(data * 1000).getHours();
-    let minutes = new Date(data * 1000).getMinutes();
-    hour = hour < 10 ? `0${hour}` : hour;
-    minutes = minutes < 10 ? `0${minutes}` : minutes;
-    return `${hour}:${minutes}`;
-  }
+  sendForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const data1 = new chatRoom("Hossein", "gaming");
+    data1.addChat(messageText.value);
+    messageText.value = "";
+    setTimeout(() => {
+      messageDisplay.scrollTo(0, messageDisplay.scrollHeight);
+    }, 100);
+  });
 };
 
-const sendForm = document.querySelector("form");
-const messageText = document.querySelector("#message-input");
+newMessage();
 
-sendForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const data1 = new chatRoom("Hossein", "gaming");
-  data1.addChat(messageText.value);
-});
+/* delete Message  */
 
-getInformationLive(db);
+const deleteMessage = (Messages) => {
+  Messages.addEventListener("click", function (e) {
+    const data1 = new chatRoom("Hossein", "gaming");
+    data1.deleteChat(this.getAttribute("data-id"));
+    this.remove();
+  });
+};
+
+export { deleteMessage };
