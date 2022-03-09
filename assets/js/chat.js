@@ -6,25 +6,51 @@ import {
   setDoc,
   deleteDoc,
   Timestamp,
+  onSnapshot,
+  query,
+  where,
 } from "./app.js";
 
-async function getInformation(db) {
+/* connect to the database */
+
+/* async function getInformation(db) {
   try {
     const getData = await collection(db, "Chats");
     const getDocument = await getDocs(getData);
-    const document = getDocument.docs.map((doc) => doc.data());
-    console.log(document);
+     const document = getDocument.docs.map((doc) => displayChat(doc.data())); 
+
     return document;
   } catch (error) {
     console.log(`something is wrong ${error}`);
   }
-}
-getInformation(db);
+} */
 
+/* live Connect to the database */
+
+async function getInformationLive(db) {
+  try {
+    const q = query(collection(db, "Chats"));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      snapshot.docChanges().forEach((change) => {
+        if (change.type === "added") {
+        }
+        if (change.type === "modified") {
+        }
+        if (change.type === "removed") {
+        }
+      });
+    });
+  } catch (error) {
+    console.log(`something is wrong ${error}`);
+  }
+}
+
+/* chatroom class */
 class chatRoom {
   constructor(username, room) {
     this.username = username;
     this.room = room;
+    this.id = uidMaker();
   }
   async addChat(message) {
     const time = new Date();
@@ -34,8 +60,8 @@ class chatRoom {
       room: this.room,
       created_at: Timestamp.fromDate(time),
     };
-    await setDoc(doc(db, "Chats", "grgdfgfdgfdgfdg"), chatData);
+    await setDoc(doc(db, "Chats", `${this.id}`), chatData);
   }
 }
 
-const data1 = new chatRoom("hassan", "gaming");
+getInformationLive(db);
