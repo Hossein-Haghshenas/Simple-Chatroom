@@ -148,3 +148,26 @@ li {
 #send-btn:hover {
   background: rgba(0, 140, 255, 0.5);
 }
+
+/* footer */
+
+footer a {
+  transition: all 0.5s ease;
+}
+
+footer a:hover {
+  color: #8f52ff;
+  animation: footer 2s infinite 0.5s ease-in;
+}
+
+@keyframes footer {
+  0% {
+    color: #00e1ff;
+  }
+  50% {
+    color: #0011ff;
+  }
+  100% {
+    color: #5900ff;
+  }
+}
