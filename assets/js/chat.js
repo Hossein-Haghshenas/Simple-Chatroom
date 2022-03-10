@@ -46,7 +46,7 @@ const uidMaker = () => {
 class chatRoom {
   constructor(username, room) {
     this.username = username;
-    this.room = room;
+    this.room = document.querySelector(".room-active").id;
     this.id = uidMaker();
   }
   async addChat(message) {
@@ -72,7 +72,7 @@ const newMessage = () => {
 
   sendForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const data1 = new chatRoom("Hossein", "gaming");
+    const data1 = new chatRoom("Hossein");
     data1.addChat(messageText.value);
     messageText.value = "";
   });
@@ -84,9 +84,32 @@ newMessage();
 
 const deleteMessage = (Messages) => {
   Messages.addEventListener("click", function (e) {
-    const data1 = new chatRoom("Hossein", "gaming");
+    const data1 = new chatRoom("Hossein");
     data1.deleteChat(this.getAttribute("data-id"));
   });
 };
 
-export { deleteMessage };
+/* rooms */
+
+function filterByRoom(message) {
+  const rooms = document.querySelectorAll(".room-btn");
+
+  for (const room of rooms) {
+    room.addEventListener("click", function (e) {
+      rooms.forEach((elem) => {
+        elem.classList.remove("room-active");
+      });
+      e.target.classList.add("room-active");
+
+      const activeRoom = document.querySelector(".room-active").id;
+
+      if (message.getAttribute("data-room") !== activeRoom) {
+        message.classList.add("d-none");
+      } else {
+        message.classList.remove("d-none");
+      }
+    });
+  }
+}
+
+export { deleteMessage, filterByRoom };

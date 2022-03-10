@@ -1,4 +1,4 @@
-import { deleteMessage } from "./chat.js";
+import { deleteMessage, filterByRoom } from "./chat.js";
 
 /* show chats on the window */
 
@@ -14,7 +14,13 @@ const displayChat = (data, id) => {
     "animate__animated",
     "animate__fadeInLeft"
   );
+
   newMessages.setAttribute("data-id", id);
+  newMessages.setAttribute("data-room", data.room);
+
+  /* filter by room */
+  data.room !== "general" ? newMessages.classList.add("d-none") : null;
+  filterByRoom(newMessages);
 
   /* Message name */
   const messagesName = document.createElement("span");
