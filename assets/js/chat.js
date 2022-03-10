@@ -11,7 +11,7 @@ import {
   query,
 } from "./app.js";
 
-import { displayChat } from "./ui.js";
+import { displayChat, deleteChat } from "./ui.js";
 
 /* live Connect to the database */
 
@@ -22,6 +22,8 @@ async function getInformationLive(db) {
       snapshot.docChanges().forEach((change) => {
         if (change.type === "added") {
           displayChat(change.doc.data(), change.doc.id);
+        } else if (change.type === "removed") {
+          deleteChat(change.doc.data(), change.doc.id);
         }
       });
     });
@@ -84,7 +86,6 @@ const deleteMessage = (Messages) => {
   Messages.addEventListener("click", function (e) {
     const data1 = new chatRoom("Hossein", "gaming");
     data1.deleteChat(this.getAttribute("data-id"));
-    this.remove();
   });
 };
 

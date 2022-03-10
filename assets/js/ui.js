@@ -42,4 +42,11 @@ const displayChat = (data, id) => {
   deleteMessage(newMessages);
 };
 
-export { displayChat };
+const deleteChat = (chat, id) => {
+  const chats = document.querySelectorAll(".message");
+  chats.forEach((elem) => {
+    elem.getAttribute("data-id") === id ? elem.remove() : elem;
+  });
+};
+
+export { displayChat, deleteChat };
