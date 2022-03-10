@@ -32,6 +32,11 @@ li {
 
 /* rooms btn style */
 
+.logo {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
 .rooms {
   display: flex;
   flex-wrap: wrap;
