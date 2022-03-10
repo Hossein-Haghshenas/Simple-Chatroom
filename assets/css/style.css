@@ -51,7 +51,8 @@ li {
   );
   letter-spacing: 0.8px;
 }
-.room-btn:hover {
+.room-btn:hover,
+.room-active {
   animation: shadow 0.4s ease 0s infinite alternate forwards;
 }
 @keyframes shadow {
