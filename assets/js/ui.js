@@ -19,7 +19,7 @@ const displayChat = (data, id) => {
   newMessages.setAttribute("data-room", data.room);
 
   /* filter by room */
-  data.room !== "general" ? newMessages.classList.add("d-none") : null;
+  data.room !== document.querySelector(".room-active").id ? newMessages.classList.add("d-none") : null;
   filterByRoom(newMessages);
 
   /* Message name */
