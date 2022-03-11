@@ -42,9 +42,14 @@ const uidMaker = () => {
   return partTwo.concat(partOne);
 };
 
+/* get username from local storage */
+
+const username = localStorage.getItem("username");
+localStorage.clear();
+
 /* chatroom class */
 class chatRoom {
-  constructor(username, room) {
+  constructor() {
     this.username = username;
     this.room = document.querySelector(".room-active").id;
     this.id = uidMaker();
@@ -72,7 +77,7 @@ const newMessage = () => {
 
   sendForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const data1 = new chatRoom("Hossein");
+    const data1 = new chatRoom();
     data1.addChat(messageText.value);
     messageText.value = "";
   });
@@ -84,7 +89,7 @@ newMessage();
 
 const deleteMessage = (Messages) => {
   Messages.addEventListener("click", function (e) {
-    const data1 = new chatRoom("Hossein");
+    const data1 = new chatRoom();
     data1.deleteChat(this.getAttribute("data-id"));
   });
 };
